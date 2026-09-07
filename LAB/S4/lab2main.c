@@ -18,19 +18,33 @@ int main(void)
 		 for (u8 i = 0; i < 8; i++)
 		 { 
 			 if(m!=0)break;
-			 PORTA = (1 << i);
+		   set_bit(PORTA,i);
             _delay_ms(150);
 		 }
-		}
-		 else if(m==1){
-			 for (s8 i = 7; i >= 0; i--)
-			 {
-				 if (m != 1) break; 
-				 PORTA = (1 << i);
-				 _delay_ms(150);
-			 }
-			
+		 for (u8 i = 0; i < 8; i++)
+		 {
+			 if(m!=0)break;
+			 clr_bit(PORTA,i);
+			 _delay_ms(150);
 		 }
+		 
+		}
+		else if(m==1){
+			PORTA=0b00000000;
+			for (s8 i = 7; i >=0; i--)
+			{
+				if(m!=1)break;
+				set_bit(PORTA,i);
+				_delay_ms(150);
+			}
+			for (s8 i = 7; i >=0; i--)
+			{
+				if(m!=1)break;
+				clr_bit(PORTA,i);
+				_delay_ms(150);
+			}
+			
+		}
 		
 		
 		
