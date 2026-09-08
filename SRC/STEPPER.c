@@ -32,11 +32,11 @@ void Stepper_Init(void) {
 }
 
 
-void FULL_STEP(u8 Direction)
+void FULL_STEP(u8 Direction,u8 steps)
 {
 	if(Direction == CW)
 	{
-			for(u8 i = 0; i < 5; i++)
+			for(u8 i = 0; i < steps; i++)
 			{
 				DIO_voidSetPortValue(STEPPER_PORT, FullStep_Array[i]);
 				_delay_ms(1000);
@@ -46,7 +46,7 @@ void FULL_STEP(u8 Direction)
 
 	else if(Direction == CCW)
 	{
-			for(s8 i = 3; i >= 0; i--)
+			for(s8 i = steps; i >= 0; i--)
 			{
 				DIO_voidSetPortValue(STEPPER_PORT, FullStep_Array[i]);
 				_delay_ms(1000);
@@ -54,11 +54,11 @@ void FULL_STEP(u8 Direction)
 		
 	}
 }
-void HALF_STEP(u8 Direction)
+void HALF_STEP(u8 Direction,u8 steps)
 {
 	if(Direction == CW)
 	{
-		for(u8 i=0; i< 9;i++){
+		for(u8 i=0; i< steps;i++){
 			
 				DIO_voidSetPortValue(STEPPER_PORT,HalfStep_Array [i]);
 			_delay_ms(1000);
@@ -67,7 +67,7 @@ void HALF_STEP(u8 Direction)
 	}
 	else if(Direction == CCW)
 	{
-		for(u8 i=7; i>= 0;i--){
+		for(u8 i=steps; i>= 0;i--){
 			
 				DIO_voidSetPortValue(STEPPER_PORT, HalfStep_Array[i]);
 		
